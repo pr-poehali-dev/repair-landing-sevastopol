@@ -782,6 +782,95 @@ export default function Index() {
         </div>
       </section>
 
+      {/* ── EXTRA SERVICES ── */}
+      <section className="py-20" style={{ background: "#F8F9FA" }}>
+        <div className="max-w-6xl mx-auto px-4">
+          <FadeSection className="text-center mb-14">
+            <span
+              className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
+              style={{ color: "#FF6B35" }}
+            >
+              Дополнительно
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black" style={{ color: "#2C3E66" }}>
+              Дополнительные услуги
+            </h2>
+          </FadeSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {[
+              {
+                img: "https://cdn.poehali.dev/projects/5e07da6b-4213-47f1-baf0-922f8167f042/files/ea3d1811-b29a-4829-bc37-01f5b6b8d169.jpg",
+                title: "Балконы и окна",
+                icon: "AppWindow",
+                desc: "Остекление балконов и лоджий, установка ПВХ и деревянных окон, утепление и отделка балконного пространства под ключ. Монтаж подоконников, откосов и отливов.",
+              },
+              {
+                img: "https://cdn.poehali.dev/projects/5e07da6b-4213-47f1-baf0-922f8167f042/files/34520a0a-0dba-4f35-8765-72ec70061320.jpg",
+                title: "Кованые изделия",
+                icon: "Wrench",
+                desc: "Изготовление и монтаж кованых заборов, ворот, перил и лестничных ограждений. Декоративные элементы, мебель и предметы интерьера из кованого металла на заказ.",
+              },
+            ].map(({ img, title, icon, desc }) => (
+              <FadeSection key={title}>
+                <div
+                  className="relative rounded-2xl overflow-hidden group cursor-pointer"
+                  style={{ height: 320, boxShadow: "0 8px 32px rgba(44,62,102,0.13)" }}
+                >
+                  {/* Photo */}
+                  <img
+                    src={img}
+                    alt={title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+
+                  {/* Gradient overlay always */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgba(20,30,60,0.85) 0%, rgba(20,30,60,0.25) 55%, transparent 100%)",
+                    }}
+                  />
+
+                  {/* Title always visible */}
+                  <div className="absolute bottom-0 left-0 right-0 px-6 pb-5 transition-all duration-300 group-hover:pb-20">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                        style={{ background: "rgba(255,107,53,0.85)" }}
+                      >
+                        <Icon name={icon} size={18} className="text-white" />
+                      </div>
+                      <h3 className="text-xl font-black text-white">{title}</h3>
+                    </div>
+                  </div>
+
+                  {/* Hover desc */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 px-6 pb-5 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+                  >
+                    <p className="text-sm text-white leading-relaxed" style={{ opacity: 0.9 }}>
+                      {desc}
+                    </p>
+                    <button
+                      onClick={() =>
+                        document.getElementById("form")?.scrollIntoView({ behavior: "smooth" })
+                      }
+                      className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold transition-opacity hover:opacity-80"
+                      style={{ color: "#FF6B35" }}
+                    >
+                      Узнать стоимость
+                      <Icon name="ArrowRight" size={14} />
+                    </button>
+                  </div>
+                </div>
+              </FadeSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── ADVANTAGES ── */}
       <section id="advantages" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
