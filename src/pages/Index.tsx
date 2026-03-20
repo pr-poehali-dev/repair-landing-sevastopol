@@ -154,11 +154,21 @@ const advantages = [
   },
 ];
 
+const PORTFOLIO_CATEGORIES = ["Все", "Квартиры", "Ванные комнаты", "Кухни", "Офисы", "Балконы"] as const;
+
 const portfolio = [
-  { title: "Квартира 70 м²", desc: "Косметический ремонт", img: HERO_IMG },
-  { title: "Двухкомнатная квартира", desc: "Капитальный ремонт", img: HERO_IMG },
-  { title: "Дизайнерский ремонт", desc: "Элит-класс", img: HERO_IMG },
-  { title: "Офисное помещение", desc: "Отделка под ключ", img: HERO_IMG },
+  { title: "Квартира 70 м²", desc: "Косметический ремонт", img: HERO_IMG, category: "Квартиры" },
+  { title: "Двухкомнатная квартира", desc: "Капитальный ремонт", img: HERO_IMG, category: "Квартиры" },
+  { title: "Дизайнерский ремонт", desc: "Элит-класс", img: HERO_IMG, category: "Квартиры" },
+  { title: "Офисное помещение", desc: "Отделка под ключ", img: HERO_IMG, category: "Офисы" },
+  { title: "Ванная комната", desc: "Плитка и сантехника", img: HERO_IMG, category: "Ванные комнаты" },
+  { title: "Ванная под ключ", desc: "Капитальный ремонт", img: HERO_IMG, category: "Ванные комнаты" },
+  { title: "Кухня-гостиная", desc: "Дизайнерский ремонт", img: HERO_IMG, category: "Кухни" },
+  { title: "Кухня 12 м²", desc: "Косметический ремонт", img: HERO_IMG, category: "Кухни" },
+  { title: "Балкон с остеклением", desc: "Остекление и отделка", img: HERO_IMG, category: "Балконы" },
+  { title: "Лоджия под ключ", desc: "Утепление и отделка", img: HERO_IMG, category: "Балконы" },
+  { title: "Студия 35 м²", desc: "Капитальный ремонт", img: HERO_IMG, category: "Квартиры" },
+  { title: "Офис 80 м²", desc: "Отделка под ключ", img: HERO_IMG, category: "Офисы" },
 ];
 
 function useFadeIn() {
@@ -467,6 +477,141 @@ function PriceTabs() {
         </div>
       </FadeSection>
     </div>
+  );
+}
+
+const PORTFOLIO_PAGE_SIZE = 8;
+
+function PortfolioSection({ onLightbox }: { onLightbox: (img: string, title: string) => void }) {
+  const [activeCategory, setActiveCategory] = useState<string>("Все");
+  const [visibleCount, setVisibleCount] = useState(PORTFOLIO_PAGE_SIZE);
+  const loaderRef = useRef<HTMLDivElement>(null);
+
+  const filtered = activeCategory === "Все"
+    ? portfolio
+    : portfolio.filter((item) => item.category === activeCategory);
+
+  const visible = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
+
+  useEffect(() => {
+    setVisibleCount(PORTFOLIO_PAGE_SIZE);
+  }, [activeCategory]);
+
+  useEffect(() => {
+    if (!loaderRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setVisibleCount((n) => n + PORTFOLIO_PAGE_SIZE);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(loaderRef.current);
+    return () => observer.disconnect();
+  }, [hasMore]);
+
+  return (
+    <section id="portfolio" className="py-20" style={{ background: "#F8F9FA" }}>
+      <div className="max-w-6xl mx-auto px-4">
+        <FadeSection className="text-center mb-10">
+          <span
+            className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
+            style={{ color: "#FF6B35" }}
+          >
+            Наши работы
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black" style={{ color: "#2C3E66" }}>
+            Портфолио
+          </h2>
+          <p className="mt-3 text-gray-500">
+            Реальные объекты, сданные нашей бригадой в Севастополе
+          </p>
+        </FadeSection>
+
+        {/* Filters */}
+        <div className="flex flex-wrap gap-2 justify-center mb-10">
+          {PORTFOLIO_CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className="px-4 py-2 rounded-xl text-sm font-semibold transition-all"
+              style={
+                activeCategory === cat
+                  ? { background: "#2C3E66", color: "#fff" }
+                  : { background: "#fff", color: "#2C3E66", boxShadow: "0 2px 8px rgba(44,62,102,0.08)" }
+              }
+            >
+              {cat}
+              {cat !== "Все" && (
+                <span className="ml-1.5 text-xs opacity-60">
+                  ({portfolio.filter((p) => p.category === cat).length})
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {visible.map((item, i) => (
+            <div
+              key={`${item.title}-${i}`}
+              className="card-hover rounded-2xl overflow-hidden cursor-pointer group"
+              onClick={() => onLightbox(item.img, `${item.title} — ${item.desc}`)}
+              style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.08)", background: "#fff" }}
+            >
+              <div className="relative overflow-hidden" style={{ paddingBottom: "72%" }}>
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ transition: "transform 0.5s ease" }}
+                  onMouseEnter={(e) => ((e.target as HTMLImageElement).style.transform = "scale(1.08)")}
+                  onMouseLeave={(e) => ((e.target as HTMLImageElement).style.transform = "scale(1)")}
+                />
+                <div
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: "rgba(44,62,102,0.6)" }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                    <Icon name="ZoomIn" size={22} className="text-white" />
+                  </div>
+                </div>
+                <span
+                  className="absolute top-3 left-3 text-xs font-bold px-2.5 py-1 rounded-lg"
+                  style={{ background: "rgba(44,62,102,0.75)", color: "#fff" }}
+                >
+                  {item.category}
+                </span>
+              </div>
+              <div className="p-4">
+                <div className="font-bold text-sm" style={{ color: "#2C3E66" }}>{item.title}</div>
+                <div className="text-xs text-gray-400 mt-0.5">{item.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Infinite scroll trigger */}
+        <div ref={loaderRef} className="mt-8 flex justify-center">
+          {hasMore && (
+            <div className="flex items-center gap-2 text-sm text-gray-400">
+              <div className="w-4 h-4 border-2 border-gray-300 border-t-transparent rounded-full animate-spin" />
+              Загружаем ещё...
+            </div>
+          )}
+          {!hasMore && filtered.length > PORTFOLIO_PAGE_SIZE && (
+            <p className="text-sm text-gray-400">Все работы загружены</p>
+          )}
+        </div>
+
+        <p className="text-center text-xs text-gray-400 mt-4">
+          * Замените фото на реальные снимки ваших объектов
+        </p>
+      </div>
+    </section>
   );
 }
 
@@ -915,63 +1060,7 @@ export default function Index() {
       </section>
 
       {/* ── PORTFOLIO ── */}
-      <section id="portfolio" className="py-20" style={{ background: "#F8F9FA" }}>
-        <div className="max-w-6xl mx-auto px-4">
-          <FadeSection className="text-center mb-14">
-            <span
-              className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
-              style={{ color: "#FF6B35" }}
-            >
-              Наши работы
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black" style={{ color: "#2C3E66" }}>
-              Портфолио
-            </h2>
-            <p className="mt-3 text-gray-500">
-              Реальные объекты, сданные нашей бригадой в Севастополе
-            </p>
-          </FadeSection>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {portfolio.map((item) => (
-              <FadeSection key={item.title}>
-                <div
-                  className="card-hover rounded-2xl overflow-hidden cursor-pointer group"
-                  onClick={() =>
-                    setLightbox({ img: item.img, title: `${item.title} — ${item.desc}` })
-                  }
-                  style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.08)" }}
-                >
-                  <div className="relative overflow-hidden" style={{ paddingBottom: "72%" }}>
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
-                      style={{ transition: "transform 0.5s ease" }}
-                    />
-                    <div
-                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ background: "rgba(44,62,102,0.6)" }}
-                    >
-                      <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                        <Icon name="ZoomIn" size={22} className="text-white" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-4 bg-white">
-                    <div className="font-bold text-sm" style={{ color: "#2C3E66" }}>
-                      {item.title}
-                    </div>
-                    <div className="text-xs text-gray-400 mt-0.5">{item.desc}</div>
-                  </div>
-                </div>
-              </FadeSection>
-            ))}
-          </div>
-          <p className="text-center text-xs text-gray-400 mt-6">
-            * Замените фото на реальные снимки ваших объектов
-          </p>
-        </div>
-      </section>
+      <PortfolioSection onLightbox={(img, title) => setLightbox({ img, title })} />
 
       {/* ── FORM SECTION ── */}
       <section id="form" className="py-20" style={{ background: "#2C3E66" }}>
