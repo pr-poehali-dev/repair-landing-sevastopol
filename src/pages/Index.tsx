@@ -300,6 +300,7 @@ function ContactForm({ initialType = "", onClose }: { initialType?: string; onCl
           <option value="Косметический">Косметический</option>
           <option value="Капитальный">Капитальный</option>
           <option value="Элитный">Элитный</option>
+          <option value="Консультация">Консультация</option>
         </select>
       </div>
       <button
