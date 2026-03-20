@@ -51,6 +51,86 @@ const plans = [
   },
 ];
 
+const priceCategories = [
+  {
+    icon: "Wallpaper",
+    title: "Стены",
+    items: [
+      { name: "Выравнивание стен штукатуркой", price: "от 450 руб./м²" },
+      { name: "Шпаклевка стен под покраску", price: "от 280 руб./м²" },
+      { name: "Поклейка обоев", price: "от 250 руб./м²" },
+      { name: "Покраска стен", price: "от 180 руб./м²" },
+      { name: "Монтаж гипсокартона", price: "от 650 руб./м²" },
+    ],
+  },
+  {
+    icon: "Layers",
+    title: "Полы",
+    items: [
+      { name: "Стяжка пола (мокрая)", price: "от 350 руб./м²" },
+      { name: "Укладка ламината / паркетной доски", price: "от 400 руб./м²" },
+      { name: "Укладка линолеума", price: "от 180 руб./м²" },
+      { name: "Шлифовка и покраска деревянного пола", price: "от 500 руб./м²" },
+      { name: "Наливной пол", price: "от 700 руб./м²" },
+    ],
+  },
+  {
+    icon: "ArrowUp",
+    title: "Потолок",
+    items: [
+      { name: "Натяжной потолок (одноуровневый)", price: "от 550 руб./м²" },
+      { name: "Двухуровневый натяжной потолок", price: "от 900 руб./м²" },
+      { name: "Штукатурка потолка", price: "от 380 руб./м²" },
+      { name: "Шпаклевка потолка под покраску", price: "от 300 руб./м²" },
+      { name: "Монтаж подвесного потолка ГКЛ", price: "от 750 руб./м²" },
+    ],
+  },
+  {
+    icon: "Droplets",
+    title: "Сантехника",
+    items: [
+      { name: "Замена смесителя", price: "от 1 500 руб." },
+      { name: "Установка унитаза", price: "от 2 500 руб." },
+      { name: "Установка ванны / душевой кабины", price: "от 4 500 руб." },
+      { name: "Разводка труб водоснабжения", price: "от 1 200 руб./точка" },
+      { name: "Замена радиатора отопления", price: "от 3 500 руб." },
+    ],
+  },
+  {
+    icon: "Grid3x3",
+    title: "Керамическая плитка",
+    items: [
+      { name: "Укладка плитки на пол", price: "от 800 руб./м²" },
+      { name: "Укладка плитки на стены", price: "от 900 руб./м²" },
+      { name: "Укладка мозаики", price: "от 1 500 руб./м²" },
+      { name: "Затирка швов", price: "от 150 руб./м²" },
+      { name: "Укладка крупноформатного керамогранита", price: "от 1 200 руб./м²" },
+    ],
+  },
+  {
+    icon: "Zap",
+    title: "Электрика",
+    items: [
+      { name: "Установка розетки / выключателя", price: "от 500 руб." },
+      { name: "Монтаж электропроводки (под ключ)", price: "от 800 руб./точка" },
+      { name: "Установка люстры / светильника", price: "от 700 руб." },
+      { name: "Монтаж щитка", price: "от 6 000 руб." },
+      { name: "Прокладка кабеля в штробе", price: "от 200 руб./м.п." },
+    ],
+  },
+  {
+    icon: "Brush",
+    title: "Декоративные покрытия",
+    items: [
+      { name: "Венецианская штукатурка", price: "от 1 800 руб./м²" },
+      { name: "Декоративная штукатурка (короед, барашек)", price: "от 600 руб./м²" },
+      { name: "Фактурная покраска", price: "от 900 руб./м²" },
+      { name: "Микроцемент", price: "от 2 500 руб./м²" },
+      { name: "Роспись стен", price: "от 3 500 руб./м²" },
+    ],
+  },
+];
+
 const advantages = [
   {
     icon: "UserCheck",
@@ -300,6 +380,96 @@ function LightboxModal({
   );
 }
 
+function PriceTabs() {
+  const [activeTab, setActiveTab] = useState(0);
+  const cat = priceCategories[activeTab];
+
+  return (
+    <div>
+      {/* Tab buttons */}
+      <div className="flex flex-wrap gap-2 justify-center mb-10">
+        {priceCategories.map((c, i) => (
+          <button
+            key={c.title}
+            onClick={() => setActiveTab(i)}
+            className="px-4 py-2 rounded-xl text-sm font-semibold transition-all"
+            style={
+              activeTab === i
+                ? { background: "#2C3E66", color: "#fff" }
+                : { background: "#F8F9FA", color: "#2C3E66" }
+            }
+          >
+            {c.title}
+          </button>
+        ))}
+      </div>
+
+      {/* Price table */}
+      <FadeSection key={activeTab}>
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{ boxShadow: "0 4px 24px rgba(44,62,102,0.10)" }}
+        >
+          {/* Header */}
+          <div
+            className="flex items-center gap-3 px-6 py-4"
+            style={{ background: "#2C3E66" }}
+          >
+            <div
+              className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+              style={{ background: "rgba(255,107,53,0.25)" }}
+            >
+              <Icon name={cat.icon} size={18} style={{ color: "#FF6B35" }} />
+            </div>
+            <h3 className="text-lg font-black text-white">{cat.title}</h3>
+          </div>
+
+          {/* Rows */}
+          {cat.items.map((item, idx) => (
+            <div
+              key={item.name}
+              className="flex items-center justify-between px-6 py-4 gap-4"
+              style={{
+                background: idx % 2 === 0 ? "#fff" : "#F8F9FA",
+                borderBottom: "1px solid #EEF0F4",
+              }}
+            >
+              <span className="text-sm font-medium" style={{ color: "#333" }}>
+                {item.name}
+              </span>
+              <span
+                className="text-sm font-bold whitespace-nowrap"
+                style={{ color: "#FF6B35" }}
+              >
+                {item.price}
+              </span>
+            </div>
+          ))}
+
+          {/* Footer CTA */}
+          <div
+            className="px-6 py-4 flex items-center justify-between gap-4 flex-wrap"
+            style={{ background: "#F8F9FA", borderTop: "2px solid #EEF0F4" }}
+          >
+            <p className="text-sm text-gray-500">
+              Точная стоимость рассчитывается после бесплатного замера
+            </p>
+            <button
+              onClick={() =>
+                document.getElementById("form")?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="px-5 py-2.5 rounded-xl text-white text-sm font-bold transition-all hover:opacity-90"
+              style={{ background: "linear-gradient(135deg, #FF6B35, #e85d2a)" }}
+            >
+              Вызвать замерщика
+            </button>
+          </div>
+        </div>
+      </FadeSection>
+    </div>
+  );
+}
+
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState("");
@@ -332,6 +502,7 @@ export default function Index() {
           <nav className="hidden md:flex items-center gap-6 text-sm font-semibold" style={{ color: "#2C3E66" }}>
             {[
               ["Услуги", "services"],
+              ["Цены", "pricelist"],
               ["Преимущества", "advantages"],
               ["Портфолио", "portfolio"],
               ["Контакты", "contacts"],
@@ -585,6 +756,29 @@ export default function Index() {
               </FadeSection>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── PRICE LIST ── */}
+      <section id="pricelist" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <FadeSection className="text-center mb-14">
+            <span
+              className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
+              style={{ color: "#FF6B35" }}
+            >
+              Прозрачные расценки
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black" style={{ color: "#2C3E66" }}>
+              Цены на услуги
+            </h2>
+            <p className="mt-4 text-gray-500 max-w-xl mx-auto">
+              Итоговая стоимость зависит от объёма и сложности работ. Точный расчёт — на бесплатном выезде.
+            </p>
+          </FadeSection>
+
+          {/* Tabs */}
+          <PriceTabs />
         </div>
       </section>
 
