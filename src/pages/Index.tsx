@@ -833,35 +833,44 @@ export default function Index() {
                     }}
                   />
 
-                  {/* Bottom content */}
-                  <div className="absolute bottom-0 left-0 right-0 px-6 pb-5 flex flex-col gap-3">
-                    {/* Title — поднимается при наведении */}
-                    <div className="flex items-center gap-3 transition-all duration-300 translate-y-0 group-hover:-translate-y-20">
-                      <div
-                        className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-                        style={{ background: "rgba(255,107,53,0.85)" }}
-                      >
-                        <Icon name={icon} size={18} className="text-white" />
-                      </div>
-                      <h3 className="text-xl font-black text-white">{title}</h3>
+                  {/* Title — внизу, при наведении уходит наверх */}
+                  <div
+                    className="absolute left-6 right-6 flex items-center gap-3 transition-all duration-500"
+                    style={{ bottom: 20 }}
+                    ref={(el) => {
+                      if (!el) return;
+                      const card = el.closest(".group") as HTMLElement;
+                      if (!card) return;
+                      const move = () => { el.style.bottom = ""; el.style.top = "20px"; };
+                      const reset = () => { el.style.top = ""; el.style.bottom = "20px"; };
+                      card.addEventListener("mouseenter", move);
+                      card.addEventListener("mouseleave", reset);
+                    }}
+                  >
+                    <div
+                      className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: "rgba(255,107,53,0.85)" }}
+                    >
+                      <Icon name={icon} size={18} className="text-white" />
                     </div>
+                    <h3 className="text-xl font-black text-white">{title}</h3>
+                  </div>
 
-                    {/* Hover desc — появляется снизу */}
-                    <div className="absolute bottom-5 left-6 right-6 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                      <p className="text-sm text-white leading-relaxed" style={{ opacity: 0.9 }}>
-                        {desc}
-                      </p>
-                      <button
-                        onClick={() =>
-                          document.getElementById("form")?.scrollIntoView({ behavior: "smooth" })
-                        }
-                        className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold transition-opacity hover:opacity-80"
-                        style={{ color: "#FF6B35" }}
-                      >
-                        Узнать стоимость
-                        <Icon name="ArrowRight" size={14} />
-                      </button>
-                    </div>
+                  {/* Hover desc — появляется снизу */}
+                  <div className="absolute bottom-5 left-6 right-6 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">
+                    <p className="text-sm text-white leading-relaxed" style={{ opacity: 0.9 }}>
+                      {desc}
+                    </p>
+                    <button
+                      onClick={() =>
+                        document.getElementById("form")?.scrollIntoView({ behavior: "smooth" })
+                      }
+                      className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold transition-opacity hover:opacity-80"
+                      style={{ color: "#FF6B35" }}
+                    >
+                      Узнать стоимость
+                      <Icon name="ArrowRight" size={14} />
+                    </button>
                   </div>
                 </div>
               </FadeSection>
