@@ -222,7 +222,7 @@ function ContactForm({ initialType = "", onClose }: { initialType?: string; onCl
       <div className="text-center py-8">
         <div
           className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-          style={{ background: "#FF6B35" }}
+          style={{ background: "#90c046" }}
         >
           <Icon name="Check" size={32} className="text-white" />
         </div>
@@ -236,7 +236,7 @@ function ContactForm({ initialType = "", onClose }: { initialType?: string; onCl
           <button
             onClick={onClose}
             className="mt-6 px-6 py-2 rounded-xl text-white font-semibold"
-            style={{ background: "#FF6B35" }}
+            style={{ background: "#90c046" }}
           >
             Закрыть
           </button>
@@ -264,7 +264,7 @@ function ContactForm({ initialType = "", onClose }: { initialType?: string; onCl
           onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
           className="w-full px-4 py-3 rounded-xl border-2 outline-none font-medium transition-all"
           style={inputStyle}
-          onFocus={(e) => (e.target.style.borderColor = "#FF6B35")}
+          onFocus={(e) => (e.target.style.borderColor = "#90c046")}
           onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
         />
       </div>
@@ -280,7 +280,7 @@ function ContactForm({ initialType = "", onClose }: { initialType?: string; onCl
           onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
           className="w-full px-4 py-3 rounded-xl border-2 outline-none font-medium transition-all"
           style={inputStyle}
-          onFocus={(e) => (e.target.style.borderColor = "#FF6B35")}
+          onFocus={(e) => (e.target.style.borderColor = "#90c046")}
           onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
         />
       </div>
@@ -293,7 +293,7 @@ function ContactForm({ initialType = "", onClose }: { initialType?: string; onCl
           onChange={(e) => setForm((f) => ({ ...f, repairType: e.target.value }))}
           className="w-full px-4 py-3 rounded-xl border-2 outline-none font-medium bg-white transition-all"
           style={{ ...inputStyle, color: form.repairType ? "#333" : "#9ca3af" }}
-          onFocus={(e) => (e.target.style.borderColor = "#FF6B35")}
+          onFocus={(e) => (e.target.style.borderColor = "#90c046")}
           onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
         >
           <option value="">Выберите тип ремонта</option>
@@ -305,7 +305,7 @@ function ContactForm({ initialType = "", onClose }: { initialType?: string; onCl
       <button
         type="submit"
         className="w-full py-4 rounded-xl text-white font-bold text-lg transition-all hover:opacity-90 active:scale-95"
-        style={{ background: "linear-gradient(135deg, #FF6B35, #e85d2a)" }}
+        style={{ background: "linear-gradient(135deg, #90c046, #7aaa35)" }}
       >
         Отправить заявку
       </button>
@@ -427,9 +427,9 @@ function PriceTabs() {
           >
             <div
               className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-              style={{ background: "rgba(255,107,53,0.25)" }}
+              style={{ background: "rgba(144,192,70,0.25)" }}
             >
-              <Icon name={cat.icon} size={18} style={{ color: "#FF6B35" }} />
+              <Icon name={cat.icon} size={18} style={{ color: "#90c046" }} />
             </div>
             <h3 className="text-lg font-black text-white">{cat.title}</h3>
           </div>
@@ -449,7 +449,7 @@ function PriceTabs() {
               </span>
               <span
                 className="text-sm font-bold whitespace-nowrap"
-                style={{ color: "#FF6B35" }}
+                style={{ color: "#90c046" }}
               >
                 {item.price}
               </span>
@@ -469,7 +469,7 @@ function PriceTabs() {
                 document.getElementById("form")?.scrollIntoView({ behavior: "smooth" })
               }
               className="px-5 py-2.5 rounded-xl text-white text-sm font-bold transition-all hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, #FF6B35, #e85d2a)" }}
+              style={{ background: "linear-gradient(135deg, #90c046, #7aaa35)" }}
             >
               Вызвать замерщика
             </button>
@@ -518,7 +518,7 @@ function PortfolioSection({ onLightbox }: { onLightbox: (img: string, title: str
         <FadeSection className="text-center mb-10">
           <span
             className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
-            style={{ color: "#FF6B35" }}
+            style={{ color: "#90c046" }}
           >
             Наши работы
           </span>
@@ -636,7 +636,7 @@ export default function Index() {
       <header className="sticky top-0 z-40 bg-white shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#FF6B35" }}>
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#90c046" }}>
               <Icon name="Hammer" size={18} className="text-white" />
             </div>
             <span className="font-black text-xl tracking-tight" style={{ color: "#2C3E66" }}>
@@ -674,7 +674,7 @@ export default function Index() {
             <button
               onClick={() => openForm()}
               className="px-4 py-2 rounded-xl text-white text-sm font-bold hover:opacity-90 transition-opacity"
-              style={{ background: "#FF6B35" }}
+              style={{ background: "#90c046" }}
             >
               Заказать звонок
             </button>
@@ -697,16 +697,16 @@ export default function Index() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(135deg, rgba(44,62,102,0.97) 0%, rgba(44,62,102,0.78) 55%, rgba(255,107,53,0.12) 100%)",
+              "linear-gradient(135deg, rgba(44,62,102,0.97) 0%, rgba(44,62,102,0.78) 55%, rgba(144,192,70,0.12) 100%)",
           }}
         />
         <div
           className="absolute top-20 right-10 w-80 h-80 rounded-full opacity-10"
-          style={{ background: "#FF6B35", filter: "blur(70px)" }}
+          style={{ background: "#90c046", filter: "blur(70px)" }}
         />
         <div
           className="absolute bottom-20 left-10 w-52 h-52 rounded-full opacity-10"
-          style={{ background: "#FF6B35", filter: "blur(50px)" }}
+          style={{ background: "#90c046", filter: "blur(50px)" }}
         />
 
         <div
@@ -717,9 +717,9 @@ export default function Index() {
             <div
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-6"
               style={{
-                background: "rgba(255,107,53,0.18)",
-                color: "#FF6B35",
-                border: "1px solid rgba(255,107,53,0.4)",
+                background: "rgba(144,192,70,0.18)",
+                color: "#90c046",
+                border: "1px solid rgba(144,192,70,0.4)",
               }}
             >
               <Icon name="MapPin" size={14} />
@@ -728,7 +728,7 @@ export default function Index() {
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-tight mb-5">
               Ремонт и отделка{" "}
-              <span style={{ color: "#FF6B35" }}>квартир</span>
+              <span style={{ color: "#90c046" }}>квартир</span>
               <br />в Севастополе
             </h1>
 
@@ -740,7 +740,7 @@ export default function Index() {
             <a
               href={PHONE_LINK}
               className="block text-3xl sm:text-4xl font-black mb-8 hover:opacity-80 transition-opacity"
-              style={{ color: "#FF6B35" }}
+              style={{ color: "#90c046" }}
             >
               {PHONE}
             </a>
@@ -750,8 +750,8 @@ export default function Index() {
                 onClick={() => scrollTo("form")}
                 className="px-8 py-4 rounded-2xl text-white font-bold text-lg hover:opacity-90 active:scale-95 transition-all"
                 style={{
-                  background: "linear-gradient(135deg, #FF6B35, #e85d2a)",
-                  boxShadow: "0 8px 28px rgba(255,107,53,0.4)",
+                  background: "linear-gradient(135deg, #90c046, #7aaa35)",
+                  boxShadow: "0 8px 28px rgba(144,192,70,0.4)",
                 }}
               >
                 Рассчитать стоимость
@@ -789,7 +789,7 @@ export default function Index() {
               ["0 ₽", "выезд на замер"],
             ].map(([val, label]) => (
               <div key={label}>
-                <div className="text-2xl font-black" style={{ color: "#FF6B35" }}>
+                <div className="text-2xl font-black" style={{ color: "#90c046" }}>
                   {val}
                 </div>
                 <div className="text-xs font-medium mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>
@@ -807,7 +807,7 @@ export default function Index() {
           <FadeSection className="text-center mb-14">
             <span
               className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
-              style={{ color: "#FF6B35" }}
+              style={{ color: "#90c046" }}
             >
               Услуги и цены
             </span>
@@ -828,7 +828,7 @@ export default function Index() {
                     plan.featured
                       ? {
                           background: "#2C3E66",
-                          outline: "2px solid #FF6B35",
+                          outline: "2px solid #90c046",
                           boxShadow: "0 20px 60px rgba(44,62,102,0.25)",
                         }
                       : {
@@ -840,13 +840,13 @@ export default function Index() {
                   {"badge" in plan && plan.badge && (
                     <div
                       className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold text-white"
-                      style={{ background: "#FF6B35" }}
+                      style={{ background: "#90c046" }}
                     >
                       {plan.badge}
                     </div>
                   )}
                   <div className="p-8 flex flex-col flex-1">
-                    <div className="w-10 h-1 rounded mb-4" style={{ background: "#FF6B35" }} />
+                    <div className="w-10 h-1 rounded mb-4" style={{ background: "#90c046" }} />
                     <h3
                       className="text-xl font-black mb-1"
                       style={{ color: plan.featured ? "#fff" : "#2C3E66" }}
@@ -854,7 +854,7 @@ export default function Index() {
                       {plan.name} ремонт
                     </h3>
                     <div className="mb-6 mt-2">
-                      <span className="text-3xl font-black" style={{ color: "#FF6B35" }}>
+                      <span className="text-3xl font-black" style={{ color: "#90c046" }}>
                         {plan.price}
                       </span>
                       <span
@@ -875,11 +875,11 @@ export default function Index() {
                             className="w-4 h-4 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
                             style={{
                               background: plan.featured
-                                ? "rgba(255,107,53,0.25)"
-                                : "rgba(255,107,53,0.12)",
+                                ? "rgba(144,192,70,0.25)"
+                                : "rgba(144,192,70,0.12)",
                             }}
                           >
-                            <Icon name="Check" size={10} style={{ color: "#FF6B35" }} />
+                            <Icon name="Check" size={10} style={{ color: "#90c046" }} />
                           </div>
                           {w}
                         </li>
@@ -890,7 +890,7 @@ export default function Index() {
                       className="w-full py-3.5 rounded-xl font-bold text-sm hover:opacity-90 active:scale-95 transition-all"
                       style={
                         plan.featured
-                          ? { background: "#FF6B35", color: "#fff" }
+                          ? { background: "#90c046", color: "#fff" }
                           : { background: "transparent", color: "#2C3E66", border: "2px solid #2C3E66" }
                       }
                     >
@@ -910,7 +910,7 @@ export default function Index() {
           <FadeSection className="text-center mb-14">
             <span
               className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
-              style={{ color: "#FF6B35" }}
+              style={{ color: "#90c046" }}
             >
               Прозрачные расценки
             </span>
@@ -933,7 +933,7 @@ export default function Index() {
           <FadeSection className="text-center mb-14">
             <span
               className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
-              style={{ color: "#FF6B35" }}
+              style={{ color: "#90c046" }}
             >
               Дополнительно
             </span>
@@ -994,7 +994,7 @@ export default function Index() {
                   >
                     <div
                       className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{ background: "rgba(255,107,53,0.85)" }}
+                      style={{ background: "rgba(144,192,70,0.85)" }}
                     >
                       <Icon name={icon} size={18} className="text-white" />
                     </div>
@@ -1011,7 +1011,7 @@ export default function Index() {
                         document.getElementById("form")?.scrollIntoView({ behavior: "smooth" })
                       }
                       className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold transition-opacity hover:opacity-80"
-                      style={{ color: "#FF6B35" }}
+                      style={{ color: "#90c046" }}
                     >
                       Узнать стоимость
                       <Icon name="ArrowRight" size={14} />
@@ -1030,7 +1030,7 @@ export default function Index() {
           <FadeSection className="text-center mb-14">
             <span
               className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
-              style={{ color: "#FF6B35" }}
+              style={{ color: "#90c046" }}
             >
               Почему выбирают нас
             </span>
@@ -1044,7 +1044,7 @@ export default function Index() {
                 <div className="card-hover p-7 rounded-2xl h-full" style={{ background: "#F8F9FA" }}>
                   <div
                     className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
-                    style={{ background: "linear-gradient(135deg, #FF6B35, #e85d2a)" }}
+                    style={{ background: "linear-gradient(135deg, #90c046, #7aaa35)" }}
                   >
                     <Icon name={adv.icon} size={26} className="text-white" />
                   </div>
@@ -1069,7 +1069,7 @@ export default function Index() {
             <FadeSection>
               <span
                 className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
-                style={{ color: "#FF6B35" }}
+                style={{ color: "#90c046" }}
               >
                 Бесплатный замер
               </span>
@@ -1088,9 +1088,9 @@ export default function Index() {
                   <div key={text} className="flex items-center gap-3">
                     <div
                       className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{ background: "rgba(255,107,53,0.2)" }}
+                      style={{ background: "rgba(144,192,70,0.2)" }}
                     >
-                      <Icon name={icon} size={16} style={{ color: "#FF6B35" }} />
+                      <Icon name={icon} size={16} style={{ color: "#90c046" }} />
                     </div>
                     <span className="font-medium" style={{ color: "rgba(255,255,255,0.8)" }}>
                       {text}
@@ -1117,7 +1117,7 @@ export default function Index() {
           <FadeSection className="text-center mb-14">
             <span
               className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
-              style={{ color: "#FF6B35" }}
+              style={{ color: "#90c046" }}
             >
               Связаться с нами
             </span>
@@ -1135,14 +1135,14 @@ export default function Index() {
                   <a
                     href={PHONE_LINK}
                     className="text-3xl sm:text-4xl font-black block hover:opacity-80 transition-opacity"
-                    style={{ color: "#FF6B35" }}
+                    style={{ color: "#90c046" }}
                   >
                     {PHONE}
                   </a>
                   <a
                     href={PHONE_LINK}
                     className="inline-flex items-center gap-2 mt-4 px-6 py-3 rounded-xl text-white font-bold hover:opacity-90 transition-opacity"
-                    style={{ background: "#FF6B35" }}
+                    style={{ background: "#90c046" }}
                   >
                     <Icon name="Phone" size={18} />
                     Позвонить сейчас
@@ -1197,14 +1197,14 @@ export default function Index() {
             <div className="flex items-center gap-2.5">
               <div
                 className="w-8 h-8 rounded-xl flex items-center justify-center"
-                style={{ background: "#FF6B35" }}
+                style={{ background: "#90c046" }}
               >
                 <Icon name="Hammer" size={16} className="text-white" />
               </div>
               <span className="font-black text-lg text-white">РемСтрой</span>
             </div>
             <div className="text-center">
-              <a href={PHONE_LINK} className="font-bold text-lg" style={{ color: "#FF6B35" }}>
+              <a href={PHONE_LINK} className="font-bold text-lg" style={{ color: "#90c046" }}>
                 {PHONE}
               </a>
               <div className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
@@ -1237,8 +1237,8 @@ export default function Index() {
         href={PHONE_LINK}
         className="fixed bottom-6 right-6 z-40 md:hidden flex items-center gap-2 px-5 py-3.5 rounded-2xl text-white font-bold"
         style={{
-          background: "linear-gradient(135deg, #FF6B35, #e85d2a)",
-          boxShadow: "0 8px 24px rgba(255,107,53,0.5)",
+          background: "linear-gradient(135deg, #90c046, #7aaa35)",
+          boxShadow: "0 8px 24px rgba(144,192,70,0.5)",
         }}
       >
         <Icon name="Phone" size={18} />
